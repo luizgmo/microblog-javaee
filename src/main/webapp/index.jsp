@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<h1>oi</h1>
-</body>
-</html>
+<%
+if (session.getAttribute("usuarioLogado") != null) {
+	response.sendRedirect(request.getContextPath() + "/feed");
+} else {
+	response.sendRedirect(request.getContextPath() + "/login");
+}
+%>
