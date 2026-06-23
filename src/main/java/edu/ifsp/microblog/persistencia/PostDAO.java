@@ -71,25 +71,26 @@ public class PostDAO {
         return posts;
     }
 
-    /* Retorna feed: posts dos usuarios que o usuarioId segue, com paginacao */
+    /* Retorna o feed global: TODOS os posts cadastrados no banco, com paginação */
     public List<Post> findFeedPaged(int usuarioId, int page, int pageSize) {
         List<Post> posts = new ArrayList<>();
 
         try {
             Connection conn = DatabaseConnector.getConnection();
-            PreparedStatement ps = conn.prepareStatement(
-                    "SELECT p.id, p.conteudo, p.foto_url, p.data_hora, "
-                    + "       u.id AS u_id, u.username, u.nome_exibicao, u.foto_perfil "
-                    + "FROM post p "
-                    + "JOIN usuario u ON u.id = p.autor_id "
-                    + "JOIN seguidor s ON s.seguido_id = p.autor_id "
-                    + "WHERE s.seguidor_id = ? "
-                    + "ORDER BY p.data_hora DESC "
-                    + "LIMIT ?, ?");
+            
+            // Query limpa: traz tudo associando com o autor correspondente
+            String sql = "SELECT p.id, p.conteudo, p.foto_url, p.data_hora, "
+                       + "       u.id AS u_id, u.username, u.nome_exibicao, u.foto_perfil "
+                       + "FROM post p "
+                       + "JOIN usuario u ON u.id = p.autor_id "
+                       + "ORDER BY p.data_hora DESC "
+                       + "LIMIT ?, ?";
 
-            ps.setInt(1, usuarioId);
-            ps.setInt(2, (page - 1) * pageSize);
-            ps.setInt(3, pageSize);
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            // Como tiramos os filtros por ID, passamos direto os parâmetros de paginação
+            ps.setInt(1, (page - 1) * pageSize); // OFFSET
+            ps.setInt(2, pageSize);              // LIMIT
 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
