@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> [cite: 13]
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Microblog - Cadastro</title> [cite: 13]
+<title>Microblog - Cadastro</title>
 <style>
     :root {
         --azul-escuro: #0a192f;
@@ -110,40 +110,40 @@
 </style>
 </head>
 <body>
-	<h1>Criar conta</h1> [cite: 13]
+	<h1>Criar conta</h1>
 
 	<% if (request.getAttribute("erro") != null) { %>
-	<p style="color:red;"><%= request.getAttribute("erro") %></p> [cite: 13]
+	<p style="color:red;"><%= request.getAttribute("erro") %></p>
 	<% } %>
 
-	<form method="post" action="<%= request.getContextPath() %>/cadastro" enctype="multipart/form-data"> [cite: 13]
-		<label for="username">Username: </label> [cite: 13]
-		<input type="text" name="username" id="username" required> [cite: 13]
+	<form method="post" action="<%= request.getContextPath() %>/cadastro" enctype="multipart/form-data">
+		<label for="username">Username: </label>
+		<input type="text" name="username" id="username" required>
 		<br>
 
-		<label for="email">E-mail: </label> [cite: 13]
-		<input type="email" name="email" id="email" required> [cite: 13]
+		<label for="email">E-mail: </label>
+		<input type="email" name="email" id="email" required>
 		<br>
 
-		<label for="senha">Senha: </label> [cite: 13]
-		<input type="password" name="senha" id="senha" required minlength="6"> [cite: 13]
+		<label for="senha">Senha: </label>
+		<input type="password" name="senha" id="senha" required minlength="6">
 		<br>
 
-		<label for="nomeExibicao">Nome de exibição: </label> [cite: 13]
-		<input type="text" name="nomeExibicao" id="nomeExibicao" required> [cite: 13]
+		<label for="nomeExibicao">Nome de exibição: </label>
+		<input type="text" name="nomeExibicao" id="nomeExibicao" required>
 		<br>
 
-		<label for="bio">Bio: </label> [cite: 13]
-		<textarea name="bio" id="bio" maxlength="160"></textarea> [cite: 13]
+		<label for="bio">Bio: </label>
+		<textarea name="bio" id="bio" maxlength="160"></textarea>
 		<br>
 
-		<label for="fotoPerfil">Foto de perfil: </label> [cite: 13]
-		<input type="file" name="fotoPerfil" id="fotoPerfil" accept="image/png,image/jpeg,image/gif"> [cite: 13]
+		<label for="fotoPerfil">Foto de perfil: </label>
+		<input type="file" name="fotoPerfil" id="fotoPerfil" accept="image/png,image/jpeg,image/gif">
 		<br>
 
-		<button type="submit">Cadastrar</button> [cite: 13]
+		<button type="submit">Cadastrar</button>
 	</form>
 
-	<p>Já tem conta? <a href="<%= request.getContextPath() %>/login">Entrar</a></p> [cite: 14]
+	<p>Já tem conta? <a href="<%= request.getContextPath() %>/login">Entrar</a></p>
 </body>
 </html>

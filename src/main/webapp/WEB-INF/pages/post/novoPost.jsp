@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> [cite: 15]
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Microblog - Novo Post</title> [cite: 15]
+<title>Microblog - Novo Post</title>
 <script>
 function atualizarContador() {
-	const textarea = document.querySelector('#conteudo'); [cite: 15]
-	const contador = document.querySelector('#contador'); [cite: 16]
-	contador.textContent = textarea.value.length + "/280"; [cite: 16]
+	const textarea = document.querySelector('#conteudo');
+	const contador = document.querySelector('#contador');
+	contador.textContent = textarea.value.length + "/280";
 }
 </script>
 <style>
@@ -125,24 +125,24 @@ function atualizarContador() {
 </style>
 </head>
 <body>
-	<h1>Novo post</h1> [cite: 16]
+	<h1>Novo post</h1>
 
 	<% if (request.getAttribute("erro") != null) { %>
-	<p style="color:red;"><%= request.getAttribute("erro") %></p> [cite: 16]
+	<p style="color:red;"><%= request.getAttribute("erro") %></p>
 	<% } %>
 
-	<form method="post" action="<%= request.getContextPath() %>/post/novo" enctype="multipart/form-data"> [cite: 16]
-		<textarea name="conteudo" id="conteudo" maxlength="280" rows="4" oninput="atualizarContador()" required></textarea> [cite: 16]
-		<span id="contador">0/280</span> [cite: 16]
+	<form method="post" action="<%= request.getContextPath() %>/post/novo" enctype="multipart/form-data">
+		<textarea name="conteudo" id="conteudo" maxlength="280" rows="4" oninput="atualizarContador()" required></textarea>
+		<span id="contador">0/280</span>
 		<br>
 
-		<label for="foto">Foto (opcional): </label> [cite: 16]
-		<input type="file" name="foto" id="foto" accept="image/png,image/jpeg,image/gif"> [cite: 16]
+		<label for="foto">Foto (opcional): </label>
+		<input type="file" name="foto" id="foto" accept="image/png,image/jpeg,image/gif">
 		<br>
 
-		<button type="submit">Publicar</button> [cite: 16]
+		<button type="submit">Publicar</button>
 	</form>
 
-	<a href="<%= request.getContextPath() %>/feed">Voltar ao feed</a> [cite: 16]
+	<a href="<%= request.getContextPath() %>/feed">Voltar ao feed</a>
 </body>
 </html>

@@ -1,24 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> [cite: 17]
-<%@ page import="edu.ifsp.microblog.controllers.post.PostDTO" %> [cite: 17]
-<%@ page import="edu.ifsp.microblog.modelo.Usuario" %> [cite: 17]
-<%@ page import="java.util.List" %> [cite: 17]
+    pageEncoding="UTF-8"%>
+<%@ page import="edu.ifsp.microblog.controllers.post.PostDTO" %>
+<%@ page import="edu.ifsp.microblog.modelo.Usuario" %>
+<%@ page import="java.util.List" %>
 
 <%
-List<PostDTO> posts = (List<PostDTO>) request.getAttribute("posts"); [cite: 17]
-int paginaAtual = (Integer) request.getAttribute("paginaAtual"); [cite: 18]
-Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado"); [cite: 18]
-%> [cite: 19]
+List<PostDTO> posts = (List<PostDTO>) request.getAttribute("posts");
+int paginaAtual = (Integer) request.getAttribute("paginaAtual");
+Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Microblog - Feed</title> [cite: 19]
+<title>Microblog - Feed</title>
 <script>
 function gotoPage(page) {
 	if (page < 1) return;
-	window.location.href = "<%= request.getContextPath() %>/feed?page=" + page; [cite: 19]
-} [cite: 20]
+	window.location.href = "<%= request.getContextPath() %>/feed?page=" + page;
+}
 </script>
 <style>
     :root {
@@ -97,44 +97,44 @@ function gotoPage(page) {
 </style>
 </head>
 <body>
-	<h1>Feed</h1> [cite: 20]
+	<h1>Feed</h1>
 
 	<div class="container">
 		<div class="user-panel">
 			<span>
-				Logado como <strong><%= usuarioLogado.getNomeExibicao() %></strong> [cite: 20]
-				(<a href="<%= request.getContextPath() %>/perfil?username=<%= usuarioLogado.getUsername() %>">meu perfil</a>) [cite: 20]
+				Logado como <strong><%= usuarioLogado.getNomeExibicao() %></strong>
+				(<a href="<%= request.getContextPath() %>/perfil?username=<%= usuarioLogado.getUsername() %>">meu perfil</a>)
 			</span>
-			<a href="<%= request.getContextPath() %>/logout">sair</a> [cite: 21]
+			<a href="<%= request.getContextPath() %>/logout">sair</a>
 		</div>
 
-		<a href="<%= request.getContextPath() %>/post/novo" class="btn-novo-post">+ Novo Post</a> [cite: 21]
+		<a href="<%= request.getContextPath() %>/post/novo" class="btn-novo-post">+ Novo Post</a>
 
 		<br><br>
 
 		<% if (posts.isEmpty()) { %>
-		<p>Nenhum post no seu feed ainda. Siga outros usuários para ver posts aqui!</p> [cite: 22]
+		<p>Nenhum post no seu feed ainda. Siga outros usuários para ver posts aqui!</p>
 		<% } else { %>
 
 		<% for (PostDTO p : posts) { %>
 		<div class="post-card">
 			<strong>
-				<a href="<%= request.getContextPath() %>/perfil?username=<%= p.autorUsername() %>"> [cite: 22]
-					<%= p.autorNomeExibicao() %> (@<%= p.autorUsername() %>) [cite: 22]
+				<a href="<%= request.getContextPath() %>/perfil?username=<%= p.autorUsername() %>">
+					<%= p.autorNomeExibicao() %> (@<%= p.autorUsername() %>)
 				</a>
 			</strong>
 			<br>
-			<small><%= p.dataHora() %></small> [cite: 22]
-			<p><%= p.conteudo() %></p> [cite: 22]
+			<small><%= p.dataHora() %></small>
+			<p><%= p.conteudo() %></p>
 			<% if (p.fotoUrl() != null) { %>
-			<img src="<%= request.getContextPath() %>/<%= p.fotoUrl() %>" width="300"> [cite: 22]
+			<img src="<%= request.getContextPath() %>/<%= p.fotoUrl() %>" width="300">
 			<% } %>
 		</div>
 		<% } %>
 
 		<div class="paginacao">
-			<a href="#" onclick="gotoPage(<%= paginaAtual - 1 %>)">Anterior</a> [cite: 22]
-			<a href="#" onclick="gotoPage(<%= paginaAtual + 1 %>)">Próxima</a> [cite: 22]
+			<a href="#" onclick="gotoPage(<%= paginaAtual - 1 %>)">Anterior</a>
+			<a href="#" onclick="gotoPage(<%= paginaAtual + 1 %>)">Próxima</a>
 		</div>
 
 		<% } %>

@@ -1,25 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> [cite: 3]
-<%@ page import="edu.ifsp.microblog.controllers.post.PostDTO" %> [cite: 3]
-<%@ page import="edu.ifsp.microblog.service.PerfilDTO" %> [cite: 3]
-<%@ page import="java.util.List" %> [cite: 3]
+    pageEncoding="UTF-8"%>
+<%@ page import="edu.ifsp.microblog.controllers.post.PostDTO" %>
+<%@ page import="edu.ifsp.microblog.service.PerfilDTO" %>
+<%@ page import="java.util.List" %>
 
 <%
-PerfilDTO perfil = (PerfilDTO) request.getAttribute("perfil"); [cite: 3]
-List<PostDTO> posts = (List<PostDTO>) request.getAttribute("posts"); [cite: 4]
-int paginaAtual = (Integer) request.getAttribute("paginaAtual"); [cite: 4]
-int totalPaginas = (Integer) request.getAttribute("totalPaginas"); [cite: 4]
-boolean ehPerfilProprio = (Boolean) request.getAttribute("ehPerfilProprio"); [cite: 4]
-%> [cite: 5]
+PerfilDTO perfil = (PerfilDTO) request.getAttribute("perfil");
+List<PostDTO> posts = (List<PostDTO>) request.getAttribute("posts");
+int paginaAtual = (Integer) request.getAttribute("paginaAtual");
+int totalPaginas = (Integer) request.getAttribute("totalPaginas");
+boolean ehPerfilProprio = (Boolean) request.getAttribute("ehPerfilProprio");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Microblog - Perfil de <%= perfil.usuario().getUsername() %></title> [cite: 5]
+<title>Microblog - Perfil de <%= perfil.usuario().getUsername() %></title>
 <script>
 function gotoPage(page) {
-	if (page < 1) return; [cite: 5]
-	window.location.href = "<%= request.getContextPath() %>/perfil?username=<%= perfil.usuario().getUsername() %>&page=" + page; [cite: 6]
+	if (page < 1) return;
+	window.location.href = "<%= request.getContextPath() %>/perfil?username=<%= perfil.usuario().getUsername() %>&page=" + page;
 }
 </script>
 <style>
@@ -104,51 +104,51 @@ function gotoPage(page) {
 </head>
 <body>
 	<div class="container">
-		<a href="<%= request.getContextPath() %>/feed">&larr; Voltar ao feed</a> [cite: 6, 7]
+		<a href="<%= request.getContextPath() %>/feed">&larr; Voltar ao feed</a>
 
-		<h1><%= perfil.usuario().getNomeExibicao() %> (@<%= perfil.usuario().getUsername() %>)</h1> [cite: 7]
+		<h1><%= perfil.usuario().getNomeExibicao() %> (@<%= perfil.usuario().getUsername() %>)</h1>
 
 		<% if (perfil.usuario().getFotoPerfil() != null) { %>
-		<img src="<%= request.getContextPath() %>/<%= perfil.usuario().getFotoPerfil() %>" width="100" height="100" class="avatar"> [cite: 7]
+		<img src="<%= request.getContextPath() %>/<%= perfil.usuario().getFotoPerfil() %>" width="100" height="100" class="avatar">
 		<% } %>
 
-		<p><%= perfil.usuario().getBio() != null ? perfil.usuario().getBio() : "" %></p> [cite: 7, 8]
+		<p><%= perfil.usuario().getBio() != null ? perfil.usuario().getBio() : "" %></p>
 
 		<div class="stats">
-			<strong><%= perfil.seguidores() %></strong> seguidores | [cite: 8]
-			<strong><%= perfil.seguindo() %></strong> seguindo [cite: 8]
+			<strong><%= perfil.seguidores() %></strong> seguidores |
+			<strong><%= perfil.seguindo() %></strong> seguindo
 		</div>
 
 		<% if (!ehPerfilProprio) { %>
-		<form method="post" action="<%= request.getContextPath() %>/perfil"> [cite: 8]
-			<input type="hidden" name="username" value="<%= perfil.usuario().getUsername() %>"> [cite: 8]
-			<input type="hidden" name="usuarioId" value="<%= perfil.usuario().getId() %>"> [cite: 8]
-			<button type="submit"><%= perfil.jaSeguindo() ? "Deixar de seguir" : "Seguir" %></button> [cite: 8, 9]
+		<form method="post" action="<%= request.getContextPath() %>/perfil">
+			<input type="hidden" name="username" value="<%= perfil.usuario().getUsername() %>">
+			<input type="hidden" name="usuarioId" value="<%= perfil.usuario().getId() %>">
+			<button type="submit"><%= perfil.jaSeguindo() ? "Deixar de seguir" : "Seguir" %></button>
 		</form>
 		<% } %>
 
-		<hr style="border: 0; border-top: 1px solid var(--borda); margin: 20px 0;"> [cite: 9]
+		<hr style="border: 0; border-top: 1px solid var(--borda); margin: 20px 0;">
 
-		<h2>Posts</h2> [cite: 9]
+		<h2>Posts</h2>
 
 		<% if (posts.isEmpty()) { %>
-		<p>Este usuário ainda não fez nenhum post.</p> [cite: 9]
+		<p>Este usuário ainda não fez nenhum post.</p>
 		<% } else { %>
 
 		<% for (PostDTO p : posts) { %>
 		<div class="post-card">
-			<small><%= p.dataHora() %></small> [cite: 9]
-			<p><%= p.conteudo() %></p> [cite: 9]
+			<small><%= p.dataHora() %></small>
+			<p><%= p.conteudo() %></p>
 			<% if (p.fotoUrl() != null) { %>
-			<img src="<%= request.getContextPath() %>/<%= p.fotoUrl() %>" width="300"> [cite: 9]
+			<img src="<%= request.getContextPath() %>/<%= p.fotoUrl() %>" width="300">
 			<% } %>
 		</div>
 		<% } %>
 
 		<div class="paginacao">
-			<a href="#" onclick="gotoPage(<%= paginaAtual - 1 %>)">Anterior</a> [cite: 9]
-			<a href="#" onclick="gotoPage(<%= paginaAtual + 1 %>)">Próxima</a> [cite: 9]
-			<p>Página <%= paginaAtual %> de <%= totalPaginas %></p> [cite: 9]
+			<a href="#" onclick="gotoPage(<%= paginaAtual - 1 %>)">Anterior</a>
+			<a href="#" onclick="gotoPage(<%= paginaAtual + 1 %>)">Próxima</a>
+			<p>Página <%= paginaAtual %> de <%= totalPaginas %></p>
 		</div>
 
 		<% } %>

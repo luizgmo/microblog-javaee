@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> [cite: 10]
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Microblog - Login</title> [cite: 10]
+<title>Microblog - Login</title>
 <style>
     :root {
         --azul-escuro: #0a192f;
@@ -120,28 +120,28 @@
 </style>
 </head>
 <body>
-	<h1>Entrar</h1> [cite: 10]
+	<h1>Entrar</h1>
 
 	<% if (request.getAttribute("erro") != null) { %>
-	<p style="color:red;"><%= request.getAttribute("erro") %></p> [cite: 10]
+	<p style="color:red;"><%= request.getAttribute("erro") %></p>
 	<% } %>
 
 	<% if ("true".equals(request.getParameter("cadastroOk"))) { %>
-	<p style="color:green;">Cadastro realizado com sucesso! Faça login.</p> [cite: 11]
+	<p style="color:green;">Cadastro realizado com sucesso! Faça login.</p>
 	<% } %>
 
-	<form method="post" action="<%= request.getContextPath() %>/login"> [cite: 11]
-		<label for="email">E-mail: </label> [cite: 11]
-		<input type="email" name="email" id="email" required> [cite: 11]
+	<form method="post" action="<%= request.getContextPath() %>/login">
+		<label for="email">E-mail: </label>
+		<input type="email" name="email" id="email" required>
 		<br>
 
-		<label for="senha">Senha: </label> [cite: 11]
-		<input type="password" name="senha" id="senha" required> [cite: 11]
+		<label for="senha">Senha: </label>
+		<input type="password" name="senha" id="senha" required>
 		<br>
 
-		<button type="submit">Entrar</button> [cite: 11]
+		<button type="submit">Entrar</button>
 	</form>
 
-	<p>Não tem conta? <a href="<%= request.getContextPath() %>/cadastro">Cadastre-se</a></p> [cite: 12]
+	<p>Não tem conta? <a href="<%= request.getContextPath() %>/cadastro">Cadastre-se</a></p>
 </body>
 </html>
